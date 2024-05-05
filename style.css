@@ -1,11 +1,66 @@
-:root { --color: #111; --background-color: #EEE; }
+:root {
+    --color: #111; 
+    --background-color: #EEE; 
+    --button-color: #d091bf;
+}
 
 @media (prefers-color-scheme: dark) {
-    :root { --color: #EEE; --background-color: #111; }
+    :root {
+        --color: #EEE;
+        --background-color: #111; 
+        --button-color: #a9408c;
+    }
 }
 
 :root {
     color-scheme: light dark;
     color: var(--color);
     background-color: var(--background-color);
+}
+
+h1 {
+    text-align: center;
+    font-family: cursive;
+    font-size: xxx-large;
+    padding: 0;
+    margin: 0;
+}
+
+.controls {
+    display: flex;
+    column-gap: 1em;
+    background-color: purple;
+    padding: 1em;
+    justify-content: center;
+}
+
+.controls a {
+    font-family: sans-serif;
+    display: block;
+    background-color: var(--button-color);
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 2px solid var(--color);
+    color: var(
+    --color);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a[hidden] {
+    display: none;
+}
+
+div#lens {
+    width: calc(100vw - 2em);
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    margin: 1em;
+}
+
+img#page {
+    max-width: min(calc(100vw - 2em), 1000px);
 }
