@@ -1,0 +1,24 @@
+{
+    "pages":[
+        {
+            "src":"gawg.jpg",
+            "title":"Page 1!"
+        },
+        {
+            "src":"GMsODUbXUAEao5a.jpg",
+            "title":"Page 21"
+        },
+        {
+            "src":"n.png",
+            "title":"Page 3!"
+        },
+        {
+            "src":"POLAROID_COMM.png",
+            "title":"Page 4!"
+        },
+        {
+            "src":"yeah man.png",
+            "title":"Page 5!"
+        }
+    ]
+}
