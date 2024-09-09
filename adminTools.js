@@ -13,7 +13,7 @@ async function init(){
         let pageTitle = document.getElementById("pgTitle").value;
         let pageAlt = document.getElementById("pgAlt").value;
         let pageDesc = document.getElementById("pgDesc").value;
-        addPage(pageFileName, pageTitle, pageAlt, pageDesc)
+        addPage(pageFileName, pageTitle, pageAlt, pageDesc);
       const content = JSON.stringify(pageData);
        const mimeType = 'attachment/plain;';
        const filename = `pages.json`;
