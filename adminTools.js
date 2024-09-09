@@ -7,6 +7,15 @@ const pageData = getPageData()
 async function init(){
     "use strict"
     const pageData = await getPageData()
+    function addPage(fileName,title,alt,desc){
+        let size = pageData.pages.length
+        pageData.pages.push({
+            "src":`${fileName}`,
+            "title":(title ? title : `Page ${size + 1}`),
+            "alt":alt,
+            "desc":desc
+        })
+    }
     const downloadButton = document.getElementById("download")
     downloadButton.onclick = function() {
         let pageFileName = document.getElementById("pgFileName").value;
@@ -26,18 +35,6 @@ async function init(){
       a.click();
     };
 }
-
-function addPage(fileName,title,alt,desc){
-    let size = pageData.pages.length
-    pageData.pages.push({
-        "src":`${fileName}`,
-        "title":(title ? title : `Page ${size + 1}`),
-        "alt":alt,
-        "desc":desc
-    })
-}
-
-
 
 // wait till page load to execute
 if (document.readyState === "loading") {
