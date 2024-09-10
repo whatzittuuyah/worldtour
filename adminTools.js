@@ -20,7 +20,7 @@ async function init(){
     }
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");
-    const previewImg = document.getElementById("preview");
+    const previewImg = document.getElementById("page");
     const previewButton = document.getElementById("pgPrev");
     const previewAlt = document.getElementById("pgAlt");
     const previewDesc = document.getElementById("desc");
