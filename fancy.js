@@ -13,7 +13,7 @@ async function init(){
     page.src = `imgs/pages/${pageData.pages[pageNum].src}`;
     page.alt = page.title = pageData.pages[pageNum].alt
     page.removeAttribute("hidden");
-    pgTitle.textContent(pageData.pages[pageNum].title);
+    pgTitle.replaceChildren(pageData.pages[pageNum].title);
     desc.textContent(pageData.pages[pageNum].desc);
     prev.href = `?page=${+pageNum - 1}`
     next.href = `?page=${+pageNum + 1}`
