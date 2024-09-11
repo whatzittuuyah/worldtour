@@ -4,6 +4,18 @@ async function getPageData(){
     return await response.json()
 }
 const pageData = getPageData()
+function extractFilename(path) {
+    if (path.substr(0, 12) == "C:\\fakepath\\")
+      return path.substr(12); // modern browser
+    var x;
+    x = path.lastIndexOf('/');
+    if (x >= 0) // Unix-based path
+      return path.substr(x+1);
+    x = path.lastIndexOf('\\');
+    if (x >= 0) // Windows-based path
+      return path.substr(x+1);
+    return path; // just the filename
+  }
 async function init(){
     "use strict"
     const pageData = await getPageData()
@@ -26,7 +38,7 @@ async function init(){
     const previewDesc = document.getElementById("desc");
     const previewTitle = document.getElementById("pgTitle");
     function updatePreview() {
-        previewImg.src = previewUp.value;
+        previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
         const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
@@ -42,7 +54,7 @@ async function init(){
     };
     const downloadButton = document.getElementById("download")
     downloadButton.onclick = function() {
-        let pageFileName = document.getElementById("pgFileName").value;
+        let pageFileName = extractFilename(previewUp.value);
         let pageTitle = document.getElementById("pgTitle").value;
         let pageAlt = document.getElementById("pgAlt").value;
         let pageDesc = document.getElementById("desc").value;
