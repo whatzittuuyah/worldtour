@@ -31,7 +31,7 @@ async function init(){
         const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
     };
-    previewUp.onclick = function(){
+    previewUp.onchange = function(){
         updatePreview();
         if(previewLens.hasAttribute("hidden")){
             previewLens.removeAttribute("hidden")
