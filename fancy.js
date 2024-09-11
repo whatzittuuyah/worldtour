@@ -14,7 +14,7 @@ async function init(){
     page.alt = page.title = pageData.pages[pageNum].alt
     page.removeAttribute("hidden");
     pgTitle.replaceChildren(pageData.pages[pageNum].title);
-    desc.textContent(pageData.pages[pageNum].desc);
+    desc.replaceChildren(pageData.pages[pageNum].desc);
     prev.href = `?page=${+pageNum - 1}`
     next.href = `?page=${+pageNum + 1}`
     if(+pageNum === 0){
