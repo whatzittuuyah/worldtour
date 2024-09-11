@@ -40,6 +40,7 @@ async function init(){
     function updatePreview() {
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
+        previewImg.title = previewAlt.value;
         const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
     };
