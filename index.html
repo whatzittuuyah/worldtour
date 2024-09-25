@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>DEBUG_REMOVELATER</title>
-        <link rel="stylesheet" href="style.css" />
-        <script src="fancy.js"></script>
-    </head>
-    <body>
-        <h1> Cloe World Tour !</h1>
-        <div class="controls">
-            <a href="?page=0" id="first">First</a>
-            <a href="" id="prev">Prev</a>
-            <a href="" id="next">Next</a>
-            <a href="./" id="latest">Latest</a>
-            
+
+<head>
+    <title>DEBUG_REMOVELATER</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="fancy.js"></script>
+</head>
+
+<body>
+    <div class="wrapper" id="wrapper">
+        <div class="titleHeader">
+            <h1><a href="./"> Cloe World Tour !</a></h1>
         </div>
-        <div id="lens">
-            <img hidden id="page">
+        <div class="body-wrap">
+            <div class="controls">
+                <a href="?page=0" id="first">First</a>
+                <a href="" id="prev">Prev</a>
+                <a href="" id="next">Next</a>
+                <a href="./" id="latest">Latest</a>
+
+            </div>
+            <div class="lens" id="lens">
+                <img hidden id="page">
+            </div>
+            <div>
+                <!--navigation buttons again?-->
+            </div>
+            <div id="descBox" class="descBox">
+                <h2 id="title" class="title"></h2>
+                <div id="desc" class="desc">
+                </div>
+            </div>
         </div>
-        <div>
-            <!--navigation buttons again?-->
-        </div>
-        <div id="descBox" class="descBox">
-            <h2 id="title" class="title"></h2>
-            <p id="desc" class="desc">
-            </p>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
