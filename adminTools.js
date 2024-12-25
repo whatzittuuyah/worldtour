@@ -13,8 +13,6 @@ async function getLens() {
     document.getElementById("previewLens").innerHTML = lHtml
 }
 
-const comicLens = await getLens()
-
 function tag(name, attr = {}){
     const newTag = document.createElement(name);
     for (const [key, value] of Object.entries(attr)){
