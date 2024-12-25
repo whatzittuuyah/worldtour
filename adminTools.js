@@ -103,6 +103,7 @@ async function init(){
     const previewDesc = document.getElementById("desc");
     const previewTitle = document.getElementById("pgTitle");
     previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
+    previewImg.removeAttribute("hidden")
     function updatePreview() {
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
