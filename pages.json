@@ -1,4 +1,10 @@
 {
+    "chapters":[
+        {
+            "title":"Setting the Stage",
+            "startIndex": 0
+        }
+    ],
     "pages":[
         {
             "src":"gawg.jpg",

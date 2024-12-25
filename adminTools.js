@@ -3,6 +3,31 @@ async function getPageData(){
     const response = await fetch("pages.json",{cache:"no-cache"})
     return await response.json()
 }
+
+//fetch comic viewer html
+async function getLens() {
+    const inHtml = await fetch("index.html")
+    const dummy = document.createElement("div")
+    dummy.innerHTML = await inHtml.text()
+    const lHtml = dummy.getElementById("wrapper").innerHTML
+    document.getElementById("previewLens").innerHTML = lHtml
+}
+
+const comicLens = await getLens()
+
+function tag(name, attr = {}){
+    const newTag = document.createElement(name);
+    for (const [key, value] of Object.entries(attr)){
+        newTag.setAttribute(key, value);
+    }
+    return newTag;
+}
+
+async function prepLens(){
+    const pLens = document.getElementById("previewLens")
+    pLens.replaceChildren(comicLens)
+}
+
 const pageData = getPageData()
 function extractFilename(path) {
     if (path.substr(0, 12) == "C:\\fakepath\\")
@@ -20,14 +45,58 @@ async function init(){
     "use strict"
     const pageData = await getPageData()
     let newPageData = pageData;
-    function addPage(fileName,title,alt,desc){
+    function addPage(fileName,title,alt,desc,append = true, index = 0){
         let size = pageData.pages.length
         newPageData = pageData;
-        newPageData.pages.push({
+        newPageData.pages.splice((append ? size : index), 0, {
             "src":`${fileName}`,
             "title":(title ? title : `Page ${size + 1}`),
             "alt":alt,
             "desc":desc
+        })
+    }
+    function whichChapter(index, pd){
+        const chIndex = pd.chapters.findLastIndex((p)=> p.startIndex <= index)
+        return chIndex
+    }
+    function deletePage(pageIndex){
+        let chapterCount = newPageData.chapters.length
+        /* Identify the chapter the page is in by finding the last object
+        in the chapters array whose starting index is less than or equal to
+        the given page index*/
+        let inChapter = whichChapter(pageIndex, newPageData)
+        newPageData.splice(pageIndex, 1) // Removes selected page
+        for(let i = (inChapter + 1); i < chapterCount; i++){
+            newPageData.chapters[i].startIndex --
+
+        } /*starting from the chapter after the removed page's chapter, decrement
+        all following chapters' starting indeces. Automatically skips itself if
+        starting on the latest chapter*/
+    }
+    function injectPage(pageIndex,fileName,title,alt,desc){
+        let chapterCount = newPageData.chapters.length
+        /* Identify the chapter the page is in by finding the last object
+        in the chapters array whose starting index is less than or equal to
+        the given page index*/
+        let inChapter = whichChapter(pageIndex, newPageData)
+        addPage(fileName,title,alt,desc,false, pageIndex)
+        for(let i = (inChapter + 1); i < chapterCount; i++){
+            newPageData.chapters[i].startIndex ++
+
+        } /*starting from the chapter after the injected page's chapter, increment
+        all following chapters' starting indeces. Automatically skips itself if
+        starting on the latest chapter*/
+    }
+    function batchDelete(pArray){
+        for(const item of pArray){
+            deletePage(item)
+        }
+    }
+    function addChapter(name, index){
+        let newChIndex = whichChapter(index, newPageData) + 1
+        newPageData.splice(newChIndex,0,{
+            "title": name,
+            "startIndex": index
         })
     }
     const previewUp = document.getElementById("pgUp");
@@ -37,6 +106,7 @@ async function init(){
     const previewAlt = document.getElementById("pgAlt");
     const previewDesc = document.getElementById("desc");
     const previewTitle = document.getElementById("pgTitle");
+    previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
     function updatePreview() {
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
@@ -71,6 +141,12 @@ async function init(){
       a.setAttribute('download', filename);
       a.click();
     };
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", prepLens);
+} else {
+    prepLens();
 }
 
 // wait till page load to execute
