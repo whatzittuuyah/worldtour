@@ -4,6 +4,8 @@ async function getPageData(){
     return await response.json()
 }
 
+const gotLens = new CustomEvent("gotLens")
+
 //fetch comic viewer html
 async function getLens() {
     const inHtml = await fetch("index.html")
@@ -11,6 +13,7 @@ async function getLens() {
     dummy.innerHTML = await inHtml.text()
     const lHtml = dummy.getElementById("wrapper").innerHTML
     document.getElementById("previewLens").innerHTML = lHtml
+    document.dispatchEvent(gotLens)
 }
 
 function tag(name, attr = {}){
