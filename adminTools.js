@@ -145,4 +145,4 @@ if (document.readyState === "loading") {
     getLens();
 }
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("gotLens", init);
