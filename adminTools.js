@@ -11,7 +11,7 @@ async function getLens() {
     const inHtml = await fetch("index.html")
     const dummy = document.createElement("div")
     dummy.innerHTML = await inHtml.text()
-    const lHtml = dummy.getElementById("wrapper").innerHTML
+    const lHtml = dummy.querySelector("#wrapper").innerHTML
     document.getElementById("previewLens").innerHTML = lHtml
     document.dispatchEvent(gotLens)
 }
