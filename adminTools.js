@@ -23,11 +23,6 @@ function tag(name, attr = {}){
     return newTag;
 }
 
-async function prepLens(){
-    const pLens = document.getElementById("previewLens")
-    pLens.replaceChildren(comicLens)
-}
-
 const pageData = getPageData()
 function extractFilename(path) {
     if (path.substr(0, 12) == "C:\\fakepath\\")
@@ -144,9 +139,9 @@ async function init(){
 }
 
 if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", prepLens);
+    document.addEventListener("DOMContentLoaded", getLens);
 } else {
-    prepLens();
+    getLens();
 }
 
 // wait till page load to execute
