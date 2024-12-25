@@ -145,9 +145,4 @@ if (document.readyState === "loading") {
     getLens();
 }
 
-// wait till page load to execute
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-} else {
-    init();
-}
+document.addEventListener("DOMContentLoaded", init);
