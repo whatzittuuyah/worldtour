@@ -1,0 +1,19 @@
+# This is a basic workflow that is manually triggered
+
+name: Deploy Site
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        passphrase: ${{ secrets.KEYPASS }}
+        source: "*,!node_modules"
+        target: /home/public
