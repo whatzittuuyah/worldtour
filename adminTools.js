@@ -25,6 +25,7 @@ function tag(name, attr = {}){
 }
 
 const pageData = getPageData()
+
 function extractFilename(path) {
     if (path.substr(0, 12) == "C:\\fakepath\\")
       return path.substr(12); // modern browser
@@ -51,6 +52,9 @@ async function init(){
             "desc":desc
         })
     }
+
+    /* Returns the array position of the chapter the given page
+    number would be found in */
     function whichChapter(index, pd){
         const chIndex = pd.chapters.findLastIndex((p)=> p.startIndex <= index)
         return chIndex
@@ -94,6 +98,19 @@ async function init(){
             "title": name,
             "startIndex": index
         })
+    }
+    function getMode(){
+        return document.getElementById("selectBox").value
+    }
+    function enactMode(...args){
+        switch(getMode()){
+            case "add":
+                break;
+            case "update":
+                break;
+            case "delete":
+                break;
+        }
     }
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");

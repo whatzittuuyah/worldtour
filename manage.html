@@ -9,9 +9,22 @@
         <div id="previewLens" class="wrapper" hidden>
         </div>
         <div class="inputForm">
+            <label> What brings you here?
+                <select name="adminModeSelect" id="selectBox">
+                    <option value="">Can I get uhhhh</option>
+                    <option value="add">Add a page</option>
+                    <option value="update">Update a page</option>
+                    <option value="delete">Delete a page</option>
+                    <option value="batchAdd" disabled>Batch upload</option>
+                    <option value="batchDelete" disabled>Batch delete</option>
+                </select>
+                </label>
             <input type="file" id="pgUp" name="pgU" type="image/*">
             <input type="text" id="pgTitle" name="pgT" placeholder="Title (Optional)">
             <input type="text" id="pgAlt" name="pgA" placeholder="Alt text">
+            <label class="chkBxLabel"> Append?
+              <input type="checkbox" id="appendMode" name="apndM">
+            </label>
             <button id="pgPrev">Update Preview</button>
             <button id="download">Get File</button>
         </div>
