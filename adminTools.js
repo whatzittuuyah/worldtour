@@ -59,6 +59,11 @@ async function init(){
         const chIndex = pd.chapters.findLastIndex((p)=> p.startIndex <= index)
         return chIndex
     }
+
+    function autoTitle(index){
+        return `Chapter ${whichChapter(index,newPageData)} Page ${(1+(index - newPageData.chapters[whichChapter(index,newPageData)].startIndex))}`
+    }
+
     function deletePage(pageIndex){
         let chapterCount = newPageData.chapters.length
         /* Identify the chapter the page is in by finding the last object
