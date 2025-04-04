@@ -35,6 +35,8 @@ h1 {
 
 .titleHeader a{
     text-decoration: none;
+    -webkit-text-stroke: 0.075em hotpink;
+    paint-order: stroke;
 }
 
 .controls {
