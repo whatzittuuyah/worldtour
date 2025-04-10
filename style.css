@@ -53,15 +53,15 @@ h1 {
 }
 
 .controls a {
-    font-family: sans-serif;
-    display: block;
-    background-color: var(--button-color);
     padding: 0.5em;
-    border: 2px outset var(--color);
-    color: var(
-    --color);
     text-decoration: none;
+    display: block;
+    /*font-family: sans-serif;
+    background-color: var(--button-color);
+    border: 2px outset var(--color);
     text-transform: uppercase;
+    color: var(
+    --color);*/
 }
 
 a[hidden] {
