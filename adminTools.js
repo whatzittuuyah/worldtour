@@ -124,6 +124,10 @@ async function init(){
     const previewAlt = document.getElementById("pgAlt");
     const previewDesc = document.getElementById("desc");
     const previewTitle = document.getElementById("pgTitle");
+    const previewControls = document.getElementById("controls");
+    const lowerPreviewControls = document.getElementById("bControls");
+    const cloneControls = previewControls.cloneNode(true);
+    lowerPreviewControls.appendChild(cloneControls);
     previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
     previewImg.removeAttribute("hidden")
     function updatePreview() {
