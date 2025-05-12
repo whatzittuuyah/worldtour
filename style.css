@@ -29,6 +29,15 @@ h1 {
     padding: 0;
     margin: 0;
 }
+
+h1 a img {    
+    background-image: url(imgs/resources/skullby4tile.png);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
 .wrapper{
     padding: 20px;
     width: 100%;
