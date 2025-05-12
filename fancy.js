@@ -26,7 +26,7 @@ async function init(){
         next.setAttribute("hidden", true)
     };
     const cloneControls = pageControls.cloneNode(true);
-    lowerControls.replaceChildren(...cloneControls.childNodes);
+    lowerControls.appendChild(cloneControls);
 }
 
 //what page are we on?
