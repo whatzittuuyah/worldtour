@@ -7,6 +7,8 @@ async function init(){
     const page = document.getElementById("page");
     const pgTitle = document.getElementById("title");
     const desc = document.getElementById("desc");
+    const pageControls = document.getElementById("controls")
+    const lowerControls = document.getElementById("bControls");
     const pageData = await getPageData();
     let recentPageIndex = pageData.pages.length - 1;
     const pageNum = currentPage() ?? recentPageIndex;
@@ -23,6 +25,7 @@ async function init(){
     if(+pageNum === recentPageIndex){
         next.setAttribute("hidden", true)
     };
+    lowerControls.replaceWith(pageControls);
 }
 
 //what page are we on?
