@@ -25,7 +25,8 @@ async function init(){
     if(+pageNum === recentPageIndex){
         next.setAttribute("hidden", true)
     };
-    lowerControls.replaceChildren(...pageControls.childNodes.toSpliced(0,0));
+    const cloneControls = pageControls.cloneNode(true);
+    lowerControls.replaceChildren(cloneControls.childNodes);
 }
 
 //what page are we on?
