@@ -25,7 +25,7 @@ async function init(){
     if(+pageNum === recentPageIndex){
         next.setAttribute("hidden", true)
     };
-    lowerControls.replaceWith(pageControls);
+    lowerControls = pageControls
 }
 
 //what page are we on?
