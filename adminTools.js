@@ -121,18 +121,14 @@ async function init(){
     const previewLens = document.getElementById("previewLens");
     const previewImg = document.getElementById("page");
     const previewButton = document.getElementById("previewButton");
-    first.setAttribute.inert;
-    const prev = document.getElementById("prev");
-    prev.setAttribute.inert;
-    const next = document.getElementById("next");
-    next.setAttribute.inert;
-    const latest = document.getElementById("latest");
-    latest.setAttribute.inert;
     const previewAlt = document.getElementById("pgAlt");
     const previewDesc = document.getElementById("desc");
     const previewTitle = document.getElementById("pgTitle");
     const previewControls = document.getElementById("controls");
     const lowerPreviewControls = document.getElementById("bControls");
+    for(const child of document.getElementById("controls").children){
+       child.setAttribute('inert',true);
+    }
     const cloneControls = previewControls.cloneNode(true);
     lowerPreviewControls.appendChild(cloneControls);
     previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
