@@ -1,9 +1,13 @@
 async function init(){
     "use strict"
     const first = document.getElementById("first");
+    first.setAttribute.inert;
     const prev = document.getElementById("prev");
+    prev.setAttribute.inert;
     const next = document.getElementById("next");
+    next.setAttribute.inert;
     const latest = document.getElementById("latest");
+    latest.setAttribute.inert;
     const page = document.getElementById("page");
     const pgTitle = document.getElementById("title");
     const desc = document.getElementById("desc");
