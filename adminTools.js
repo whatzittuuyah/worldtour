@@ -120,7 +120,7 @@ async function init(){
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");
     const previewImg = document.getElementById("page");
-    const first = document.getElementById("first");
+    const previewButton = document.getElementById("previewButton");
     first.setAttribute.inert;
     const prev = document.getElementById("prev");
     prev.setAttribute.inert;
