@@ -120,7 +120,14 @@ async function init(){
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");
     const previewImg = document.getElementById("page");
-    const previewButton = document.getElementById("pgPrev");
+    const first = document.getElementById("first");
+    first.setAttribute.inert;
+    const prev = document.getElementById("prev");
+    prev.setAttribute.inert;
+    const next = document.getElementById("next");
+    next.setAttribute.inert;
+    const latest = document.getElementById("latest");
+    latest.setAttribute.inert;
     const previewAlt = document.getElementById("pgAlt");
     const previewDesc = document.getElementById("desc");
     const previewTitle = document.getElementById("pgTitle");
