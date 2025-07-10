@@ -226,11 +226,7 @@ async function init(){
     };
     const downloadButton = document.getElementById("download")
     downloadButton.onclick = function() {
-        let pageFileName = extractFilename(previewUp.value);
-        let pageTitle = document.getElementById("pgTitle").value;
-        let pageAlt = document.getElementById("pgAlt").value;
-        let pageDesc = document.getElementById("desc").value;
-        addPage(pageFileName, pageTitle, pageAlt, pageDesc);
+        savePage();
       const content = JSON.stringify(newPageData);
        const mimeType = 'attachment/plain;';
        const filename = `pages.json`;
