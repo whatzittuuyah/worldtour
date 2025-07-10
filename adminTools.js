@@ -64,6 +64,12 @@ async function init(){
         return `Chapter ${whichChapter(index,newPageData)} Page ${(1+(index - newPageData.chapters[whichChapter(index,newPageData)].startIndex))}`
     }
 
+    let viewerPage = 0
+    function updateViewerPageIndex(index){
+        viewerPage = index
+        return index
+    }
+
     function deletePage(pageIndex){
         let chapterCount = newPageData.chapters.length
         /* Identify the chapter the page is in by finding the last object
@@ -104,8 +110,52 @@ async function init(){
             "startIndex": index
         })
     }
+    function setMode(){
+        switch(getMode()){
+            case "add":
+                break;
+            case "update":
+                break;
+            case "delete":
+                break;
+        }
+    }
     function getMode(){
         return document.getElementById("selectBox").value
+    }
+    function dedupe(filename){
+        let result = {}
+        result.caught = false
+        for(page of newPageData.pages){
+            if(page.src === filename){
+                result.caught = true
+                result.index = [newPageData.pages.indexOf(page)]
+                return result
+            }
+        }
+    }
+    function savePage(){
+        let pageFileName = "";
+        let append = 0
+        let index = 0
+        if(getMode() === "add"){
+            let ddr = dedupe(extractFilename(previewUp.value))
+            if(ddr.caught){
+                index = viewerPage = ddr.index 
+                document.getElementById("selectBox").value = "update"
+                pageFileName = newPageData.pages[ddr.index].src
+            } else {
+                pageFileName = extractFilename(previewUp.value)
+                append = 1
+            }
+        }
+        pageFileName = (pageFileName ? pageFileName : newPageData.pages[viewerPage].src)
+        index = viewerPage
+        let pageTitle = document.getElementById("pgTitle").value;
+        let pageAlt = document.getElementById("pgAlt").value;
+        let pageDesc = document.getElementById("desc").value;
+        addPage(pageFileName, pageTitle, pageAlt, pageDesc, append, index);
+        document.getElementById("selectBox").value = "update"
     }
     function enactMode(...args){
         switch(getMode()){
@@ -117,6 +167,12 @@ async function init(){
                 break;
         }
     }
+    function switchPreviewPage(index){
+        if(document.getElementById("savebx").value){
+            savePage();
+        }
+         updatePreview(1,index);
+    }
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");
     const previewImg = document.getElementById("page");
@@ -126,6 +182,10 @@ async function init(){
     const previewTitle = document.getElementById("pgTitle");
     const previewControls = document.getElementById("controls");
     const lowerPreviewControls = document.getElementById("bControls");
+    const first = document.getElementById("first");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    const latest = document.getElementById("latest");
     for(const child of document.getElementById("controls").children){
        child.setAttribute('inert',true);
     }
@@ -133,18 +193,33 @@ async function init(){
     lowerPreviewControls.appendChild(cloneControls);
     previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
     previewImg.removeAttribute("hidden")
-    function updatePreview() {
+    function updatePreview(...args) {
+        let pageExists = args[0]
+        let index = args[1]
+        if(pageExists){
+            previewImg.src = newPageData.pages[index].src
+            previewImg.alt = newPageData.pages[index].alt;
+            previewImg.title = newPageData.pages[index].alt;
+            descTitle.replaceChildren(newPageData.pages[index].title)
+            viewerPage = index
+        }
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
         previewImg.title = previewAlt.value;
         const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
+        viewerPage = newPageData.pages.size
     };
     previewUp.onchange = function(){
+        if(document.getElementById("savebx") 
+            && !previewLens.hasAttribute("hidden")){
+            savePage();
+        }
         updatePreview();
         if(previewLens.hasAttribute("hidden")){
             previewLens.removeAttribute("hidden")
         };
+        document.getElementById("selectBox").value = "add"
     };
     previewButton.onclick = function() {
         updatePreview();
