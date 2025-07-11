@@ -226,13 +226,13 @@ async function init(){
             descTitle.replaceChildren(newPageData.pages[index].title)
             viewerPage = index
             updateButtons();
-        }
+        } else {
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
         previewImg.title = previewAlt.value;
         const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
-        viewerPage = newPageData.pages.size
+        viewerPage = newPageData.pages.size}
     };
     previewUp.onclick = function(){
         if(document.getElementById("savebx") 
