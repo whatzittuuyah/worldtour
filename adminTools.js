@@ -210,11 +210,13 @@ async function init(){
         descTitle.replaceChildren(previewTitle.value)
         viewerPage = newPageData.pages.size
     };
-    previewUp.onchange = function(){
+    previewUp.oninput = function(){
         if(document.getElementById("savebx") 
             && !previewLens.hasAttribute("hidden")){
             savePage();
         }
+    }
+    previewUp.onchange = function(){
         updatePreview();
         if(previewLens.hasAttribute("hidden")){
             previewLens.removeAttribute("hidden")
