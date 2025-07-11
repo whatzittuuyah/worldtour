@@ -133,6 +133,7 @@ async function init(){
                 return result
             }
         }
+        return result
     }
     function savePage(){
         let pageFileName = "";
