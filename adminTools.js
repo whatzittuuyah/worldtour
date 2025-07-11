@@ -168,11 +168,11 @@ async function init(){
                 break;
         }
     }
-    function switchPreviewPage(index){
+    function catchSave(fun,...args){
         if(document.getElementById("savebx").checked){
             savePage();
         }
-         switchPreviewUpdate(index);
+         fun(...args);
     }
     function clearInputs(){
         document.getElementById("pgTitle").value = ""
@@ -197,7 +197,13 @@ async function init(){
     for(const child of document.getElementById("controls").children){
        child.removeAttribute("href");
     }
+    let unrecurse = 0
     function updateButtons(){
+        unrecurse ||= 0
+        switch(unrecurse){
+            case 1:
+                break;
+            case 0:
         let curr = viewerPage
         first.destination = 0
         prev.destination = (curr-1 < 0 ? curr-1 : 0)
@@ -210,8 +216,10 @@ async function init(){
         }
         latest.destination = newPageData.pages.size-1
         for(const child of document.getElementById("controls").children){
-            child.onclick = switchPreviewPage(child.destination)
+            child.onclick = catchSave(switchPreviewUpdate,child.destination)
         }
+        unrecurse = 0
+    }
     }
     const cloneControls = previewControls.cloneNode(true);
     lowerPreviewControls.appendChild(cloneControls);
