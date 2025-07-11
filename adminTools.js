@@ -207,7 +207,7 @@ async function init(){
         } else {
             next.destination = curr +1
         }
-        latest = newPageData.pages.size-1
+        latest.destination = newPageData.pages.size-1
         for(const child of document.getElementById("controls").children){
             child.onclick = switchPreviewPage(child.destination)
         }
