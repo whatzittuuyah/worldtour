@@ -197,6 +197,12 @@ async function init(){
     for(const child of document.getElementById("controls").children){
        child.removeAttribute("href");
     }
+    /* okay so there's recusion in definining updateButtons as containing
+    switchPreviewPage as containing updateButtons. But don't know how to get
+    around this, or why it's an issue at the declarative level when self-invoking
+    functions exist anyways. I guess it's a problem when it's twovem? I don't know
+    how on earth to make either of these functions function without the other. 
+    computers are fuckin hard, man.*/
     let unrecurse = 0
     function updateButtons(){
         unrecurse ||= 0
