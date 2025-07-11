@@ -174,6 +174,11 @@ async function init(){
         }
          updatePreview(1,index);
     }
+    function clearInputs(){
+        document.getElementById("pgTitle").value = ""
+        document.getElementById("pgAlt").value = ""
+        document.getElementById("desc").value = ""
+    }
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");
     const previewImg = document.getElementById("page");
@@ -211,7 +216,7 @@ async function init(){
         descTitle.replaceChildren(previewTitle.value)
         viewerPage = newPageData.pages.size
     };
-    previewUp.onselect = function(){
+    previewUp.onclick = function(){
         if(document.getElementById("savebx") 
             && !previewLens.hasAttribute("hidden")){
             savePage();
@@ -223,6 +228,7 @@ async function init(){
             previewLens.removeAttribute("hidden")
         };
         document.getElementById("selectBox").value = "add"
+        clearInputs();
     };
     previewButton.onclick = function() {
         updatePreview();
