@@ -194,7 +194,7 @@ async function init(){
     const next = document.getElementById("next");
     const latest = document.getElementById("latest");
     for(const child of document.getElementById("controls").children){
-       child.removeAttribute("a");
+       child.removeAttribute("href");
     }
     function updateButtons(){
         let curr = viewerPage
