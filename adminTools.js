@@ -178,6 +178,7 @@ async function init(){
         document.getElementById("pgTitle").value = ""
         document.getElementById("pgAlt").value = ""
         document.getElementById("desc").value = ""
+        document.getElementById("desc").replaceChildren("")
     }
     const previewUp = document.getElementById("pgUp");
     const previewLens = document.getElementById("previewLens");
@@ -193,7 +194,23 @@ async function init(){
     const next = document.getElementById("next");
     const latest = document.getElementById("latest");
     for(const child of document.getElementById("controls").children){
-       child.setAttribute('inert',true);
+       child.removeAttribute("a");
+    }
+    function updateButtons(){
+        let curr = viewerPage
+        first.destination = 0
+        prev.destination = (curr-1 < 0 ? curr-1 : 0)
+        if(curr+1 >= newPageData.Pages.size){
+            next.onclick = document.getElementById("pgUp").click()
+            next.destination = newPageData.pages.size -1
+            next.noclickFlag = true
+        } else {
+            next.destination = curr +1
+        }
+        latest = newPageData.pages.size-1
+        for(const child of document.getElementById("controls").children){
+            child.onclick = switchPreviewPage(child.destination)
+        }
     }
     const cloneControls = previewControls.cloneNode(true);
     lowerPreviewControls.appendChild(cloneControls);
@@ -208,6 +225,7 @@ async function init(){
             previewImg.title = newPageData.pages[index].alt;
             descTitle.replaceChildren(newPageData.pages[index].title)
             viewerPage = index
+            updateButtons();
         }
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
