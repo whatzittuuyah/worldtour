@@ -150,7 +150,7 @@ async function init(){
                 append = 1
             }
         }
-        pageFileName = (pageFileName ? pageFileName : newPageData.pages[viewerPage].src)
+        pageFileName ||= newPageData.pages[viewerPage].src
         index = viewerPage
         let pageTitle = document.getElementById("pgTitle").value;
         let pageAlt = document.getElementById("pgAlt").value;
@@ -169,10 +169,10 @@ async function init(){
         }
     }
     function switchPreviewPage(index){
-        if(document.getElementById("savebx").value){
+        if(document.getElementById("savebx").checked){
             savePage();
         }
-         switchPreviewPage(index);
+         switchPreviewUpdate(index);
     }
     function clearInputs(){
         document.getElementById("pgTitle").value = ""
@@ -216,7 +216,7 @@ async function init(){
     lowerPreviewControls.appendChild(cloneControls);
     previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
     previewImg.removeAttribute("hidden")
-    function switchPreviewPage(index){
+    function switchPreviewUpdate(index){
         previewImg.src = newPageData.pages[index].src
         previewImg.alt = newPageData.pages[index].alt;
         previewImg.title = newPageData.pages[index].alt;
@@ -235,7 +235,7 @@ async function init(){
         updateButtons();
     };
     previewUp.onclick = function(){
-        if(document.getElementById("savebx") 
+        if(document.getElementById("savebx").checked 
             && !previewLens.hasAttribute("hidden")){
             savePage();
         }
