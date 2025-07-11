@@ -200,7 +200,7 @@ async function init(){
         let curr = viewerPage
         first.destination = 0
         prev.destination = (curr-1 < 0 ? curr-1 : 0)
-        if(curr+1 >= newPageData.Pages.size){
+        if(curr+1 >= newPageData.pages.size){
             next.onclick = document.getElementById("pgUp").click()
             next.destination = newPageData.pages.size -1
             next.noclickFlag = true
