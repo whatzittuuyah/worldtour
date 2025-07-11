@@ -172,7 +172,7 @@ async function init(){
         if(document.getElementById("savebx").value){
             savePage();
         }
-         updatePreview(1,index);
+         switchPreviewPage(index);
     }
     function clearInputs(){
         document.getElementById("pgTitle").value = ""
@@ -216,24 +216,23 @@ async function init(){
     lowerPreviewControls.appendChild(cloneControls);
     previewDesc.replaceWith(tag("textarea", {id:"desc",class:"desc",rows:"3",placeholder:"Comment"}))
     previewImg.removeAttribute("hidden")
-    function updatePreview(...args) {
-        let pageExists = args[0]
-        let index = args[1]
-        if(pageExists){
-            previewImg.src = newPageData.pages[index].src
-            previewImg.alt = newPageData.pages[index].alt;
-            previewImg.title = newPageData.pages[index].alt;
-            descTitle.replaceChildren(newPageData.pages[index].title)
-            viewerPage = index
-            updateButtons();
-        } else {
+    function switchPreviewPage(index){
+        previewImg.src = newPageData.pages[index].src
+        previewImg.alt = newPageData.pages[index].alt;
+        previewImg.title = newPageData.pages[index].alt;
+        descTitle.replaceChildren(newPageData.pages[index].title)
+        viewerPage = index
+        updateButtons();
+
+    }
+    function updatePreview() {
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
         previewImg.title = previewAlt.value;
         const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
         viewerPage = newPageData.pages.size
-        updateButtons();}
+        updateButtons();
     };
     previewUp.onclick = function(){
         if(document.getElementById("savebx") 
