@@ -189,6 +189,7 @@ async function init(){
     const previewTitle = document.getElementById("pgTitle");
     const previewControls = document.getElementById("controls");
     const lowerPreviewControls = document.getElementById("bControls");
+    const descTitle = document.getElementById("title");
     const first = document.getElementById("first");
     const prev = document.getElementById("prev");
     const next = document.getElementById("next");
@@ -229,7 +230,6 @@ async function init(){
         previewImg.src = URL.createObjectURL(previewUp.files[0]);
         previewImg.alt = previewAlt.value;
         previewImg.title = previewAlt.value;
-        const descTitle = document.getElementById("title");
         descTitle.replaceChildren(previewTitle.value)
         viewerPage = newPageData.pages.size
         updateButtons();
