@@ -168,11 +168,15 @@ async function init(){
                 break;
         }
     }
-    function catchSave(fun,...args){
-        if(document.getElementById("savebx").checked){
-            savePage();
+    /* function decorator that saves the page edits before callin the func.
+    use a lambda to call functions that require arguments*/
+    function catchSave(func) {
+        return () => {
+            if(document.getElementById("savebx").checked) {
+                savePage();
+            }
+            func();
         }
-         fun(...args);
     }
     function clearInputs(){
         document.getElementById("pgTitle").value = ""
@@ -222,7 +226,7 @@ async function init(){
         }
         latest.destination = newPageData.pages.size-1
         for(const child of document.getElementById("controls").children){
-            child.onclick = catchSave(switchPreviewUpdate,child.destination)
+            child.onclick = catchSave(() => switchPreviewUpdate(child.destination))
         }
         unrecurse = 0
     }
