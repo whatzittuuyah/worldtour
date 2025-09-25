@@ -51,10 +51,10 @@ h1 a img {
 .controls {
     display: flex;
     column-gap: 1em;
-    background-color: purple;
+    background-color: #e17dff;
     padding: 1em;
     justify-content: center;
-    border: inset pink;
+    border: outset #ff7dc1;
 }
 
 .controls a {
@@ -75,25 +75,29 @@ a[hidden] {
 
 .body-wrap{
     background: none;
-    border: double;
+    border: outset #ff4364;
     padding: 3px;
+    background-color: #ff4364;
 }
 
 .lens {
     display: flex;
     justify-content: center;
+    background-color: var(--background-color);
 }
 
-.lens img {
-    border-style:outset;
+img#page {
+    border-style: double;
+    max-width: 100%;
 }
 
 .descBox{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    border: 3px outset aqua;
+    border: 3px inset #c9ffff;
     padding: 1rem;
+    background-color: #44484d;
 }
 
 .chkBxLabel{
@@ -103,8 +107,4 @@ a[hidden] {
 
 body {
     margin: 1em;
-}
-
-img#page {
-    max-width: min(calc(100vw - 2em), 1000px);
 }
