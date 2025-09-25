@@ -88,7 +88,7 @@ a[hidden] {
 
 img#page {
     border-style: double;
-    max-width: 100%;
+    max-width: calc(100% - 8px);
 }
 
 .descBox{
